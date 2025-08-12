@@ -1,0 +1,74 @@
+/* GlowButton.css */
+.btn {
+  padding: 0 20px;
+  height: 50px;
+  margin: 0;
+  background-size: 100%;
+  background-image: linear-gradient(#f12c51, #e11b41);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+  border: 0;
+  color: #FFF;
+  font-size: 16px;
+  border-radius: 1px;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn span {
+  z-index: 10;
+  position: relative;
+}
+
+.btn--glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--glow:before {
+  content: '';
+  position: absolute;
+  left: -20%;
+  top: -10%;
+  width: 0;
+  height: 100%;
+  transform: rotate(15deg) scale(1, 2);
+  box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.7);
+  animation: button-glow 3000ms ease-in-out infinite;
+}
+
+/* Hover effect */
+.btn:hover {
+  background-image: linear-gradient(#ffffff, #f0f0f0);
+  color: #f12c51;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Disabled state */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn:disabled:hover {
+  background-image: linear-gradient(#f12c51, #e11b41);
+  color: #FFF;
+  transform: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+}
+
+/* Glow animation */
+@keyframes button-glow {
+  0% {
+    left: -20%;
+  }
+  50% {
+    left: 120%;
+  }
+  100% {
+    left: 120%;
+  }
+}

@@ -1,3 +1,4 @@
+
 import "./chatPage.css";
 import NewPrompt from "../../components/newPrompt/NewPrompt";
 import { useQuery } from "@tanstack/react-query";
@@ -50,8 +51,12 @@ const ChatPage = () => {
                   </div>
                 </>
               ))}
-
-          {data && <NewPrompt data={data}/>}
+                   
+          {data && (
+            <div className="newPrompt">
+              <NewPrompt data={data}/>
+            </div>
+          )}
         </div>
       </div>
     </div>

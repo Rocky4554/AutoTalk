@@ -3,6 +3,7 @@ import "./dashboardLayout.css";
 import { useAuth } from "@clerk/clerk-react";
 import { useEffect } from "react";
 import ChatList from "../../components/chatList/ChatList";
+import DashboardLoader from "../../components/loaders/dashboardLoader.jsx"
 
 const DashboardLayout = () => {
   const { userId, isLoaded } = useAuth();
@@ -15,7 +16,7 @@ const DashboardLayout = () => {
     }
   }, [isLoaded, userId, navigate]);
 
-  if (!isLoaded) return "Loading...";
+  if (!isLoaded) return <DashboardLoader/>;
 
   return (
     <div className="dashboardLayout">

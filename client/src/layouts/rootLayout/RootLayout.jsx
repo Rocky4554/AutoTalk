@@ -1,7 +1,11 @@
-import { Link, Outlet } from "react-router-dom";
+
+import { Link, Outlet, useLocation } from "react-router-dom";
 import "./rootLayout.css";
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Footer from "../../components/footer/footer.jsx";
+
+
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
@@ -11,25 +15,23 @@ if (!PUBLISHABLE_KEY) {
 const queryClient = new QueryClient();
 
 const RootLayout = () => {
+  const location = useLocation();
+  
+  // Show footer only on homepage
+  const showFooter = location.pathname === "/";
+
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <QueryClientProvider client={queryClient}>
-        <div className="rootLayout">
-          <header>
-            <Link to="/" className="logo">
-              <img src="/logo.png" alt="" />
-              <span>LAMA AI</span>
-            </Link>
-            <div className="user">
-              <SignedIn>
-                <UserButton />
-              </SignedIn>
-            </div>
-          </header>
-          <main>
-            <Outlet />
-          </main>
-        </div>
+        <>
+          <div className="rootLayout">
+            {/* <Header /> */}
+            <main>
+              <Outlet />
+            </main>
+          </div>
+          {showFooter && <Footer />}
+        </>
       </QueryClientProvider>
     </ClerkProvider>
   );

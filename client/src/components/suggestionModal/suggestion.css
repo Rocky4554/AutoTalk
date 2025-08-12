@@ -1,0 +1,424 @@
+/* Demo trigger (remove in production) */
+.demo-trigger {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
+}
+
+.demo-button {
+  background: #3B82F6;
+  color: white;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.demo-button:hover {
+  background: #2563EB;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+/* Modal container */
+.modal-container {
+  position: relative;
+  background: #0F172A;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  max-width: 28rem;
+  width: 100%;
+  overflow: hidden;
+  animation: modalEnter 0.3s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Close button */
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.close-button:hover {
+  background: rgba(30, 41, 59, 0.8);
+  transform: scale(1.05);
+}
+
+.close-icon {
+  font-size: 18px;
+  color: #E2E8F0;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Header */
+.modal-header {
+  background: linear-gradient(135deg, #1E40AF 0%, #7C3AED 100%);
+  padding: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.new-launch-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 8px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.sparkles-icon {
+  font-size: 16px;
+}
+
+.badge-text {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.modal-subtitle {
+  color: rgba(226, 232, 240, 0.8);
+  font-size: 14px;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Content */
+.modal-content {
+  padding: 24px;
+  color: #E2E8F0;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.image-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-icon svg {
+  color: #3B82F6;
+}
+
+.content-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+/* Features list */
+.features-list {
+  margin-bottom: 24px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #CBD5E1;
+  line-height: 1.5;
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons */
+.button-container {
+  display: flex;
+  gap: 12px;
+}
+
+.secondary-button,
+.primary-button {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  border: none;
+}
+
+.secondary-button {
+  background: rgba(30, 41, 59, 0.5);
+  color: #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.secondary-button:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #3B82F6, #7C3AED);
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+.primary-button:hover {
+  background: linear-gradient(135deg, #2563EB, #6D28D9);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Bottom accent */
+.modal-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #1E40AF, #7C3AED);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .modal-container {
+    margin: 16px;
+    max-width: calc(100vw - 32px);
+  }
+  
+  .modal-header,
+  .modal-content {
+    padding: 20px;
+  }
+  
+  .modal-title {
+    font-size: 22px;
+  }
+  
+  .content-title {
+    font-size: 18px;
+  }
+  
+  .button-container {
+    flex-direction: column;
+  }
+}
+
+/* Animation for smooth entrance */
+@media (prefers-reduced-motion: no-preference) {
+  .modal-container {
+    animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Add these new styles to your existing CSS */
+
+.modal-container {
+  position: relative;
+  background: #0F172A;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  max-width: 28rem;
+  width: 100%;
+  overflow: hidden;
+  animation: modalEnter 0.3s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Remove the border property from here as we'll use the pseudo-element for the glowing border */
+}
+
+/* Glowing border animation */
+.modal-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0),
+    rgba(59, 130, 246, 0),
+    rgba(59, 130, 246, 0),
+    rgba(59, 130, 246, 0)
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  animation: borderAnimation 4s linear infinite;
+}
+
+@keyframes borderAnimation {
+  0% {
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0.8)
+    );
+    background-size: 400% 400%;
+    background-position: 100% 100%;
+  }
+  25% {
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0.8),
+      rgba(59, 130, 246, 0)
+    );
+    background-position: 0% 100%;
+  }
+  50% {
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0.8),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0)
+    );
+    background-position: 0% 0%;
+  }
+  75% {
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.8),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0)
+    );
+    background-position: 100% 0%;
+  }
+  100% {
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0),
+      rgba(59, 130, 246, 0.8)
+    );
+    background-position: 100% 100%;
+  }
+}
+
+/* Add a subtle pulse effect to the modal */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+.modal-container {
+  animation: 
+    modalEnter 0.3s ease-out,
+    pulse 4s infinite;
+}

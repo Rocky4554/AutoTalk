@@ -1,8 +1,8 @@
-.homepage {
+ .homepage {
   display: flex;
   align-items: center;
   gap: 100px;
-  height: 100%;
+  height: 100%; 
 
   @media screen and (max-width: 1024px) {
     flex-direction: column;
@@ -37,19 +37,7 @@
         max-width: 100%;
       }
     }
-    a {
-      padding: 15px 25px;
-      background-color: #217bfe;
-      color: white;
-      border-radius: 20px;
-      font-size: 14px;
-      margin-top: 20px;
-
-      &:hover {
-        background-color: white;
-        color: #217bfe;
-      }
-    }
+  
   }
   .right {
     flex: 1;
@@ -128,7 +116,7 @@
     bottom: 0;
     left: 0;
     opacity: 0.05;
-    animation: 100s linear infinite rotateOrbital;
+    animation: 40s linear infinite rotateOrbital;
     z-index: -1;
   }
 
@@ -181,4 +169,4 @@
   100% {
     transform: translateX(-50%);
   }
-}
+} 

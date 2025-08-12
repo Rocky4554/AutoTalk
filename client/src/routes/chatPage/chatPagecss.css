@@ -1,0 +1,209 @@
+/* Main container - split into content and input sections */
+.chatPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  overflow: hidden; /* Prevent any overflow on main container */
+}
+
+/* Wrapper for chat content */
+.chatPage .wrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+  /* Hide scrollbars completely - all browsers */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.chatPage .wrapper::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/WebKit */
+  width: 0;
+  height: 0;
+}
+
+/* Chat messages container */
+.chatPage .wrapper .chat {
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100%;
+}
+
+/* Message styling */
+.chatPage .wrapper .chat .message {
+  padding: 16px 20px;
+  border-radius: 18px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 85%;
+}
+
+/* User messages - right aligned */
+.chatPage .wrapper .chat .message.user {
+  background-color: #2c2937;
+  align-self: flex-end;
+  margin-left: auto;
+  color: #ffffff;
+}
+
+/* AI messages - left aligned */
+.chatPage .wrapper .chat .message:not(.user) {
+  background-color: #2a2a2a;
+  align-self: flex-start;
+  border: 1px solid #404040;
+  color: #e0e0e0;
+  max-width: 95%;
+}
+
+/* Markdown content spacing */
+.chatPage .wrapper .chat .message p {
+  margin: 8px 0;
+}
+
+.chatPage .wrapper .chat .message p:first-child {
+  margin-top: 0;
+}
+
+.chatPage .wrapper .chat .message p:last-child {
+  margin-bottom: 0;
+}
+
+.chatPage .wrapper .chat .message li {
+  margin: 4px 0;
+}
+
+/* Image styling */
+.chatPage .wrapper .chat img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 10px 0;
+  display: block;
+}
+
+/* Message container spacing */
+.chatPage .wrapper .chat .messageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Loading and error states */
+.chatPage .wrapper .loading,
+.chatPage .wrapper .error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+  font-size: 16px;
+  margin: auto;
+}
+
+/* INPUT SECTION - Fixed at bottom with more space from bottom */
+.chatPage .inputSection {
+  flex-shrink: 0;
+  padding: 15px 20px 40px 20px; /* Increased bottom padding from 25px to 40px */
+  background-color: #1a1a1a;
+}
+
+/* Input container - centered */
+.chatPage .inputSection .inputContainer {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style the NewPrompt component */
+.chatPage .inputSection .inputContainer .newPrompt {
+  width: 100%;
+  background-color: rgba(42, 42, 42, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  border: 1px solid #555;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  overflow: visible;
+}
+
+/* Ensure input elements are accessible */
+.chatPage .inputSection .inputContainer .newPrompt input,
+.chatPage .inputSection .inputContainer .newPrompt textarea,
+.chatPage .inputSection .inputContainer .newPrompt button {
+  pointer-events: auto;
+  z-index: inherit;
+}
+
+/* Fix any potential clipping */
+.chatPage .inputSection .inputContainer {
+  overflow: visible;
+}
+
+/* Ensure smooth scrolling */
+.chatPage .wrapper {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbars globally for any child elements */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+  .chatPage .wrapper .chat {
+    width: 95%;
+    padding: 15px 10px;
+    gap: 16px;
+  }
+  
+  .chatPage .wrapper .chat .message {
+    padding: 14px 16px;
+    font-size: 15px;
+    max-width: 90%;
+  }
+  
+  .chatPage .wrapper .chat .message:not(.user) {
+    max-width: 95%;
+  }
+  
+  .chatPage .inputSection {
+    padding: 12px 15px 35px 15px; /* Increased bottom padding for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .chatPage .wrapper .chat {
+    width: 98%;
+    padding: 12px 8px;
+    gap: 14px;
+  }
+  
+  .chatPage .wrapper .chat .message {
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 16px;
+  }
+  
+  .chatPage .wrapper .chat .message.user {
+    max-width: 95%;
+  }
+  
+  .chatPage .inputSection {
+    padding: 10px 12px 30px 12px; /* Increased bottom padding for small mobile */
+  }
+}

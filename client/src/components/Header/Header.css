@@ -1,0 +1,284 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+/* 
+  background: linear-gradient(-45deg, #eb2d2d, #1f0808, #023a4e, #51c5ae); */
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+
+  backdrop-filter: blur(12px);
+  padding: 1rem 2rem;
+  height: 70px;
+  width: 100%;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* transition: background 0.3s ease; */
+}
+
+/* Shared sections */
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.logo-image {
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Hover effect on logo */
+.header-left:hover .logo-image,
+.header-left:hover .logo-text {
+  transform: scale(1.15);
+}
+
+.header-center {
+  flex: 1;
+  justify-content: center;
+}
+
+.header-right {
+  flex: 1;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+/* Bigger + Pop button */
+.generate-btn {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 6px 14px rgba(255, 255, 255, 0.15);
+}
+
+.generate-btn:hover {
+  background-color: white;
+  transform: scale(1.1);
+  color: #fc4c20;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+  border: 2px solid #110100
+}
+
+.generate-btn:active {
+  transform: scale(0.96);
+  background-color: #dcdcdc;
+}
+
+/* User avatar */
+.user-profile {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 8px 12px rgba(8, 0, 0, 0.3));
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .header-left,
+  .header-center,
+  .header-right {
+    flex: none;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .generate-btn {
+    width: 100%;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    padding: 0.9rem;
+  }
+
+  .logo-text {
+    font-size: 1.4rem;
+  }
+
+  .logo-image {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+
+
+
+
+< !-- HTML !--><button class="button-24" role="button">Button 24</button>
+
+/* CSS */
+.button-24 {
+  background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+}
+
+.button-24:active {
+  opacity: .5;
+}
+
+/* Add this to your Header.css file */
+
+.dashboard-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 12px;
+}
+
+.dashboard-btn:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.dashboard-btn:active {
+  transform: translateY(0);
+}
+
+/* Update header-right to handle multiple buttons properly */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* If you want the buttons to look consistent */
+.dashboard-btn {
+  background: linear-gradient(135deg, #f0e7e7 0%, #c6dfe6 100%);
+  color: rgb(7, 5, 5);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.dashboard-btn:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  color: #f8fafc;
+  transform: scale(1.1);
+  cursor: pointer;
+  border: 2px solid #110100
+}
+
+.dashboard-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header-right {
+    gap: 8px;
+  }
+
+  .dashboard-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

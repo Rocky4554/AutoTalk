@@ -9,6 +9,9 @@ import RootLayout from "./layouts/rootLayout/RootLayout";
 import DashboardLayout from "./layouts/dashboardLayout/DashboardLayout";
 import SignInPage from "./routes/signInPage/signInPage";
 import SignUpPage from "./routes/signUpPage/signUpPage";
+import NotFound from "./components/notFoundPage/notFound.jsx"; 
+import Suggestion from "./components/suggestionModal/suggestion.jsx"
+import GlowingModal from "./components/GlowModal/Glow.jsx"
 
 const router = createBrowserRouter([
   {
@@ -26,6 +29,7 @@ const router = createBrowserRouter([
         path: "/sign-up/*",
         element: <SignUpPage />,
       },
+    
       {
         element: <DashboardLayout />,
         children: [
@@ -38,6 +42,19 @@ const router = createBrowserRouter([
             element: <ChatPage />,
           },
         ],
+      },
+      // Add the NotFound route as the last child - this catches all unmatched routes
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+      {
+        path: "suggest",
+        element: <Suggestion />,
+      },
+      {
+        path: "modal",
+        element: <GlowingModal />,
       },
     ],
   },

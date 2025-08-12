@@ -1,0 +1,289 @@
+/* Dashboard Styles */
+.dashboard-container {
+  min-height: 100vh;
+  background-color: #1D1E22;
+}
+
+.dashboard-content {
+  padding: 2rem;
+  color: white;
+  transition: filter 0.3s ease;
+}
+
+.dashboard-content.blurred {
+  filter: blur(8px);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #1976ed;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ccc;
+}
+
+.dashboard-cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #292a2e;
+  padding: 2rem;
+  border-radius: 10px;
+  color: white;
+  min-width: 150px;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Modal Container */
+.modal-container {
+  position: relative;
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.8) translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/*// Glow Border Animation //*/
+.animated-border-box, .animated-border-box-glow {
+  height: 400px;
+  width: 500px;
+  position: absolute;
+  overflow: hidden; 
+  z-index: 0;
+  border-radius: 15px;
+}
+
+.animated-border-box-glow {
+  overflow: hidden;
+  filter: blur(20px);
+}
+
+.animated-border-box:before, .animated-border-box-glow:before {
+  content: '';
+  z-index: -2;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  position: absolute;
+  width: 99999px;
+  height: 99999px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-image: conic-gradient(rgba(0,0,0,0), #1976ed, rgba(0,0,0,0) 25%);
+  animation: rotate 4s linear infinite;
+}
+
+.animated-border-box:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 5px;
+  top: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  background: #292a2e;
+  border-radius: 10px;
+}
+
+@keyframes rotate {
+  100% {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  color: #1976ed;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.modal-body {
+  flex: 1;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-text {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #e0e0e0;
+}
+
+.feature-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+}
+
+.highlight {
+  background: rgba(25, 118, 237, 0.1);
+  padding: 0.8rem;
+  border-radius: 8px;
+  border-left: 3px solid #1976ed;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.try-now-btn {
+  background: linear-gradient(135deg, #1976ed, #2196f3);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(25, 118, 237, 0.3);
+}
+
+.try-now-btn:hover {
+  background: linear-gradient(135deg, #1565c0, #1976ed);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(25, 118, 237, 0.4);
+}
+
+.try-now-btn:active {
+  transform: translateY(0);
+}
+
+.maybe-later-btn {
+  background: transparent;
+  color: #ccc;
+  border: 1px solid #555;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.maybe-later-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border-color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .animated-border-box, .animated-border-box-glow {
+    width: 90vw;
+    height: auto;
+    min-height: 350px;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .dashboard-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/*// Global Styles //*/
+body {
+  margin: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
