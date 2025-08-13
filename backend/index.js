@@ -12,8 +12,6 @@ dotenv.config();
 const port = process.env.PORT;
 const app = express();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(
@@ -23,10 +21,17 @@ app.use(
   })
 );
 
+
 app.use(express.json());
 
 // API Routes
 app.use("/api", apiRoutes);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const distPath = path.join(__dirname, 'dist');
+
+app.use(express.static(distPath));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -34,12 +39,10 @@ app.use((err, req, res, next) => {
   res.status(401).send("Unauthenticated!");
 });
 
-// Production - Serve static files
-app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // Catch all handler for SPA
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+  res.sendFile(path.join(__dirname,"index.html"));
 });
 
 // Start server
