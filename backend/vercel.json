@@ -5,7 +5,8 @@
       "src": "index.js",
       "use": "@vercel/node",
       "config": { 
-        "includeFiles": ["dist/**", "database/**", "routes/**"]
+        "includeFiles": ["dist/**", "database/**", "routes/**"],
+        "maxDuration": 30
       }
     }
   ],
@@ -21,10 +22,5 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "index.js": {
-      "maxDuration": 30
-    }
   }
 }
