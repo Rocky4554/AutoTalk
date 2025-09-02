@@ -23,7 +23,7 @@ const Header = () => {
       <div className="header-right">
 
         <a
-          href="https://pic-hub-one.vercel.app/"
+          href="https://pic-hub-jab2.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
