@@ -29,27 +29,26 @@ const ChatPage = () => {
             : error
             ? "Something went wrong!"
             : data?.history?.map((message, i) => (
-                <>
-                  {message.img && (
+                <div
+                  className={message.role === "user" ? "message user" : "message"}
+                  key={i}
+                  style={{ display: "flex", flexDirection: "column", alignItems: message.role === "user" ? "flex-end" : "flex-start" }}
+                >
+                  {/* Show image only for user message if present */}
+                  {message.img && message.role === "user" && (
                     <IKImage
                       urlEndpoint={import.meta.env.VITE_IMAGE_KIT_ENDPOINT}
                       path={message.img}
-                      height="300"
-                      width="400"
-                      transformation={[{ height: 300, width: 400 }]}
+                      height="200"
+                      width="300"
+                      transformation={[{ height: 200, width: 300 }]}
                       loading="lazy"
                       lqip={{ active: true, quality: 20 }}
+                      style={{ marginBottom: "8px", borderRadius: "10px" }}
                     />
                   )}
-                  <div
-                    className={
-                      message.role === "user" ? "message user" : "message"
-                    }
-                    key={i}
-                  >
-                    <Markdown>{message.parts[0].text}</Markdown>
-                  </div>
-                </>
+                  <Markdown>{message.parts[0].text}</Markdown>
+                </div>
               ))}
                    
           {data && (

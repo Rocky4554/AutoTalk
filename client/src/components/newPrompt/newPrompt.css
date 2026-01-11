@@ -36,19 +36,17 @@
   cursor: pointer;
 }
 
-.newForm img {
-  width: 16px;
-  height: 16px;
+.newForm {
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  background-color: #2c2937;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0px 20px;
 }
-
-.loading {
-  font-size: 16px;
-  color: #ececec;
-  padding: 10px;
-}
-
-.error {
-  font-size: 14px;
   color: #ff4d4d;
   padding: 10px;
 }

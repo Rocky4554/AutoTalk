@@ -145,7 +145,7 @@ const ContactForm = () => {
               Get in touch
             </h1>
             <p className="contact-description">
-              We'd love to hear from you! Send us a message and we'll respond within 24-48 hours. Our team is ready to help you with any questions or concerns.
+              We would love to hear from you! Send us a message and we'll respond within 24-48 hours. Our team is ready to help you with any questions or concerns.
             </p>
 
             {/* Contact Details */}

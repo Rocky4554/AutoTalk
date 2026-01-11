@@ -1,18 +1,24 @@
 
+
 .chatPage {
-  height: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 420px;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
+  align-items: flex-end;
+  z-index: 1000;
 }
+
 
 .wrapper {
   flex: 1;
-  overflow: scroll;
+  overflow-y: auto;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .chatPage .wrapper {
@@ -30,13 +36,15 @@
   display: none;
 }
 
+
 .chatPage .wrapper .chat {
-  width: 80%; /* Increased from 50% to allow more space */
-  max-width: 1000px; /* Increased from 700px */
+  width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  gap: 12px;
+  padding: 16px 8px 80px 8px;
+  box-sizing: border-box;
 }
 
 .chatPage .wrapper .chat p,
@@ -44,18 +52,23 @@
   margin: 10px 0px;
 }
 
+
 .chatPage .wrapper .chat .message {
-  padding: 20px;
-  width: 100%; /* AI messages take full available width */
+  padding: 12px 16px;
+  width: fit-content;
+  max-width: 90%;
   box-sizing: border-box;
+  margin-bottom: 0;
+  word-break: break-word;
 }
+
 
 .chatPage .wrapper .chat .message.user {
   background-color: #2c2937;
-  border-radius: 20px;
-  max-width: 60%; /* Reduced from 80% to create more contrast */
+  border-radius: 16px;
   align-self: flex-end;
-  width: auto; /* Override the 100% width for user messages */
+  width: fit-content;
+  max-width: 80%;
 }
 
 /* AI messages without background - clean appearance */

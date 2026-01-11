@@ -1,16 +1,20 @@
 import express from "express";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
-import { 
-  createChat, 
-  getUserChats, 
-  getChatById, 
-  updateChat 
+import {
+  createChat,
+  getUserChats,
+  getChatById,
+  updateChat,
+  streamChat
 } from "../controllers/chatControllers.js";
 
 const router = express.Router();
 
 // CREATE A NEW CHAT
 router.post("/", ClerkExpressRequireAuth(), createChat);
+
+// STREAM CHAT RESPONSE
+router.post("/stream", ClerkExpressRequireAuth(), streamChat);
 
 // GET ALL USER CHATS
 router.get("/user", ClerkExpressRequireAuth(), getUserChats);

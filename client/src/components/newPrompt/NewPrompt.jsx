@@ -3,9 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import "./newPrompt.css";
 import Upload from "../upload/Upload";
 import { IKImage } from "imagekitio-react";
-import model from "../../lib/gemini";
 import Markdown from "react-markdown";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 const NewPrompt = ({ data }) => {
   const [question, setQuestion] = useState("");
@@ -17,76 +16,86 @@ const NewPrompt = ({ data }) => {
     aiData: {},
   });
 
-  const chatHistory = data?.history?.length
-    ? data.history.map(({ role, parts }) => ({
-        role,
-        parts: [{ text: parts[0].text }],
-      }))
-    : [{ role: "user", parts: [{ text: "Initial message" }] }];
-
-  const chat = model.startChat({
-    history: chatHistory,
-    generationConfig: {},
-  });
-
   const endRef = useRef(null);
   const formRef = useRef(null);
+  const hasRun = useRef(false);
+
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     endRef.current.scrollIntoView({ behavior: "smooth" });
   }, [data, question, answer, img.dbData]);
 
-  const queryClient = useQueryClient();
+  const add = async (text, isInitial) => {
+    if (!isInitial) setQuestion(text);
 
-  const mutation = useMutation({
-    mutationFn: () => {
-      return fetch(`${import.meta.env.VITE_API_URL}/api/chats/${data._id}`, {
-        method: "PUT",
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chats/stream`, {
+        method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          question: question.length ? question : undefined,
-          answer,
+          chatId: data._id,
+          question: text,
+          inlineData: Object.keys(img.aiData).length > 0 ? img.aiData.inlineData : undefined,
           img: img.dbData?.filePath || undefined,
         }),
-      }).then((res) => res.json());
-    },
-    onSuccess: () => {
-      queryClient
-        .invalidateQueries({ queryKey: ["chat", data._id] })
-        .then(() => {
-          formRef.current.reset();
-          setQuestion("");
-          setAnswer("");
-          setImg({
-            isLoading: false,
-            error: "",
-            dbData: {},
-            aiData: {},
-          });
-        });
-    },
-    onError: (err) => {
-      console.log("Mutation Error:", err);
-    },
-  });
+      });
 
-  const add = async (text, isInitial) => {
-    if (!isInitial) setQuestion(text);
-
-    try {
-      const result = await chat.sendMessageStream(
-        Object.entries(img.aiData).length ? [img.aiData, text] : [text]
-      );
-      let accumulatedText = "";
-      for await (const chunk of result.stream) {
-        const chunkText = chunk.text();
-        accumulatedText += chunkText;
-        setAnswer(accumulatedText);
+      if (!response.ok) {
+        throw new Error("Failed to fetch stream");
       }
-      mutation.mutate();
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let accumulatedText = "";
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        // Parse SSE chunk: "data: {...}\n\n"
+        const lines = chunk.split("\n\n");
+
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const jsonStr = line.replace("data: ", "").trim();
+            if (jsonStr === "[DONE]") {
+              // Stream finished
+              break;
+            }
+            try {
+              const data = JSON.parse(jsonStr);
+              if (data.text) {
+                accumulatedText += data.text;
+                setAnswer(accumulatedText);
+              }
+            } catch (e) {
+              // Ignore parse errors for partial chunks (simple implementation)
+              console.error("Error parsing chunk", e);
+            }
+          }
+        }
+      }
+
+      // After stream is done, refresh history
+      queryClient.invalidateQueries({ queryKey: ["chat", data._id] });
+
+      if (!isInitial) {
+        formRef.current.reset();
+        setQuestion("");
+        setAnswer("");
+        setImg({
+          isLoading: false,
+          error: "",
+          dbData: {},
+          aiData: {},
+        });
+      }
+
     } catch (err) {
       console.log("Chat Error:", err);
     }
@@ -98,8 +107,6 @@ const NewPrompt = ({ data }) => {
     if (!text) return;
     add(text, false);
   };
-
-  const hasRun = useRef(false);
 
   useEffect(() => {
     if (!hasRun.current && data?.history?.length === 1) {
